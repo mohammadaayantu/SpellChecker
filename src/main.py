@@ -1,13 +1,7 @@
-# entry point
-# runs the spell checker program
-
 from spell_checker import load_dictionary, check_word, get_suggestions
 from input_handler import KeyboardInput, TextFileInput, CSVInput
-
-
+# choose input type
 def choose_input():
-    # menu
-    # choose input type
     print("Choose input method:")
     print("1. Keyboard")
     print("2. Text file")
@@ -32,16 +26,26 @@ def main():
     # setup
     dictionary = load_dictionary("data/dictionary.txt")
 
+    if not dictionary:
+        print("No dictionary loaded. Exiting.")
+        return
+
     # input
     input_handler = choose_input()
     words = input_handler.get_words()
 
+    if not words:
+        print("No words to check")
+        return
+
     # processing
+    print("\nChecking spelling...\n")
+
     for word in words:
         if check_word(word, dictionary):
-            print(word, "is correct")
+            print(f"{word} is correct")
         else:
-            print(word, "is incorrect")
+            print(f"{word} is incorrect")
 
             suggestions = get_suggestions(word, dictionary)
 
@@ -50,8 +54,8 @@ def main():
             else:
                 print("No suggestions found")
 
+            print()  # spacing
 
-# entry point
-# start program
+ 
 if __name__ == "__main__":
     main()

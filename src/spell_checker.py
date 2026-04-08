@@ -1,14 +1,16 @@
-# load dictionary from file
 def load_dictionary(file_path):
-    with open(file_path, "r") as file:
-        return set(word.strip().lower() for word in file)
+    try:
+        with open(file_path, "r") as file:
+            return set(word.strip().lower() for word in file)
+    except FileNotFoundError:
+        print("Dictionary file not found")
+        return set()
 
 # check if word is correct
 def check_word(word, dictionary):
     return word.lower() in dictionary
 
-
-# generate suggestions for a word
+ 
 def get_suggestions(word, dictionary):
     letters = "abcdefghijklmnopqrstuvwxyz"
     word = word.lower()
@@ -36,13 +38,9 @@ def get_suggestions(word, dictionary):
 
     # transposition
     for i in range(len(word) - 1):
-        new_word = (
-            word[:i] +
-            word[i+1] +
-            word[i] +
-            word[i+2:]
-        )
+        new_word = word[:i] + word[i+1] + word[i] + word[i+2:]
         if new_word in dictionary:
             suggestions.add(new_word)
 
-    return list(suggestions)
+     
+    return sorted(list(suggestions))[:5]
