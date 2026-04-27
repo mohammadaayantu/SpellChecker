@@ -24,7 +24,7 @@ def main():
     print("Simple Spell Checker")
 
     # setup
-    dictionary = load_dictionary("data/dictionary.txt")
+    dictionary = load_dictionary("SpellChecker/data/dictionary.txt")
 
     if not dictionary:
         print("No dictionary loaded. Exiting.")
