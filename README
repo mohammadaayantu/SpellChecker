@@ -1,0 +1,60 @@
+# Spell Checker (Python)
+
+## Overview
+This project implements a Python-based spell checker that validates words against a dictionary and suggests corrections for misspelled words. The program supports multiple input methods and uses simple string manipulation techniques to generate suggestions.
+
+## Features
+- Multiple input methods: keyboard input, text file input (.txt), and CSV file input (.csv)
+- Word validation using a dictionary
+- Detection of incorrect words
+- Suggestions generated using insertion, deletion, substitution, and transposition
+- Handles invalid input and missing files
+- Clear and readable output
+
+## How to Run
+1. Navigate to the project folder:
+cd SpellChecker_Proj
+
+2. Run the program:
+python SpellChecker/src/main.py
+
+## How to Use
+1. Choose an input method:
+   - Keyboard → type words directly  
+   - Text file → enter filename (must be in SpellChecker/data/)  
+   - CSV file → enter filename (first column used)
+
+2. The program will check each word, display whether it is correct or incorrect, and provide suggestions if incorrect.
+
+## Project Structure
+SpellChecker/
+├── src/     (main.py, spell_checker.py, input_handler.py)
+├── data/    (dictionary and input files)
+├── tests/   (PyTest test suite)
+
+## System Design
+The program is divided into three main components: input handling, processing, and output. Input handling manages different input types such as keyboard, text files, and CSV files. Processing checks words against a dictionary and generates suggestions. Output displays the results to the user. The dictionary is stored as a set to allow fast lookup.
+
+## OOP Concepts
+Abstraction is implemented using a base InputHandler class that defines a common interface. Encapsulation is used by keeping logic within each class. Polymorphism is demonstrated through different input classes that implement get_words() in different ways but are used the same way in the main program.
+
+## Testing
+Tests are run using:
+python -m pytest
+
+The test suite includes testing of correct and incorrect words, suggestion generation, and edge cases such as empty input, invalid characters, case sensitivity, large inputs, empty dictionaries, and suggestion limits.
+
+## Usability
+The program provides clear instructions, handles invalid input such as empty entries or missing files, and displays results in a structured and readable format.
+
+## Ethical Considerations
+The dictionary is a simple word list used for educational purposes. It may not include all valid words and suggestions may not always be accurate. No personal or sensitive data is used in this project.
+
+## Limitations
+The dictionary is small, which limits accuracy. Suggestions are not ranked by relevance. The program does not use advanced natural language processing techniques.
+
+## Future Improvements
+Future improvements could include using a larger dictionary, ranking suggestions based on similarity, improving the user interface, and implementing more advanced spell-checking algorithms.
+
+## GenAI Usage
+Generative AI was used to assist development. All outputs were reviewed, tested, and fully understood before inclusion in the project.

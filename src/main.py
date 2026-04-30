@@ -1,5 +1,6 @@
 from spell_checker import load_dictionary, check_word, get_suggestions
 from input_handler import KeyboardInput, TextFileInput, CSVInput
+from pathlib import Path
 # choose input type
 def choose_input():
     print("Choose input method:")
@@ -24,7 +25,8 @@ def main():
     print("Simple Spell Checker")
 
     # setup
-    dictionary = load_dictionary("SpellChecker/data/dictionary.txt")
+    project_root = Path(__file__).resolve().parents[1]
+    dictionary = load_dictionary(project_root / "data" / "dictionary.txt")
 
     if not dictionary:
         print("No dictionary loaded. Exiting.")
